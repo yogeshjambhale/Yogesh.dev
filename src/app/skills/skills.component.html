@@ -1,0 +1,20 @@
+<div class="skills-container">
+    <div class="content-wrapper">
+        <h2>My Skills</h2>
+        <div class="skills-grid">
+            @for (category of skillCategories; track category.name) {
+            <div class="skill-category">
+                <h3>{{ category.name }}</h3>
+                <div class="skills-list">
+                    @for (skill of category.skills; track skill.name) {
+                    <div class="skill-item">
+                        <i [class]="skill.icon"></i>
+                        <span>{{ skill.name }}</span>
+                    </div>
+                    }
+                </div>
+            </div>
+            }
+        </div>
+    </div>
+</div>
