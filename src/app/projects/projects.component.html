@@ -4,7 +4,7 @@
         @for (project of projects; track project.id) {
         <div class="project-card">
             <div class="card-image">
-                <div class="placeholder-img">{{ project.title }}</div>
+                <img [src]="project.image" [alt]="project.title">
             </div>
             <div class="card-content">
                 <h3>{{ project.title }}</h3>
@@ -14,6 +14,9 @@
                     <span class="tech-tag">{{ tech }}</span>
                     }
                 </div>
+                @if (project.link) {
+                <a [href]="project.link" target="_blank" class="project-link">View Project</a>
+                }
             </div>
         </div>
         }

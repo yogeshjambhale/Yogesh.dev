@@ -5,6 +5,7 @@ interface Certificate {
     title: string;
     issuer: string;
     date: string;
+    image: string;
 }
 
 @Component({
@@ -14,10 +15,71 @@ interface Certificate {
     styleUrl: './certificates.component.css'
 })
 export class CertificatesComponent {
-    certificates: Certificate[] = Array.from({ length: 6 }, (_, i) => ({
-        id: i + 1,
-        title: `Certificate of Achievement ${i + 1}`,
-        issuer: 'Udemy / Coursera / LinkedIn',
-        date: '2023'
-    }));
+    certificates: Certificate[] = [
+        {
+            id: 1,
+            title: 'Excel',
+            issuer: 'IT VEDANT',
+            date: '2025',
+            image: 'assets/advancedexcel.jpg'
+        },
+        {
+            id: 2,
+            title: 'SQL Mastery',
+            issuer: 'IT VEDANT',
+            date: '2025',
+            image: 'assets/sqlmastery.jpg'
+        },
+        {
+            id: 3,
+            title: 'Power BI Essentials',
+            issuer: 'IT VEDANT',
+            date: '2025',
+            image: 'assets/powerbiessentials.jpg'
+        },
+        // {
+        //     id: 4,
+        //     title: 'Tableau Essentials',
+        //     issuer: 'IT VEDANT',
+        //     date: '2026',
+        //     image: 'assets/logo.svg'
+        // },
+        // {
+        //     id: 5,
+        //     title: 'Python Essentials For Data Science',
+        //     issuer: 'IT VEDANT',
+        //     date: '2026',
+        //     image: 'assets/logo.svg'
+        // },
+        // {
+        //     id: 6,
+        //     title: 'NumPy And Statistical Analysis',
+        //     issuer: 'IT VEDANT',
+        //     date: '2026',
+        //     image: 'assets/logo.svg'
+        // },
+        // {
+        //     id: 7,
+        //     title: 'Applied Data Analysis With Python',
+        //     issuer: 'IT VEDANT',
+        //     date: '2026',
+        //     image: 'assets/logo.svg'
+        // },
+        // {
+        //     id: 9,
+        //     title: 'Machine Learning Mastery',
+        //     issuer: 'IT VEDANT',
+        //     date: '2026',
+        //     image: 'assets/logo.svg'
+        // },
+        // {
+        //     id: 10,
+        //     title: 'Artificial Intelligence Essentials',
+        //     issuer: 'IT VEDANT',
+        //     date: '2026',
+        //     image: 'assets/logo.svg'
+        // }
+
+
+    ];
 }

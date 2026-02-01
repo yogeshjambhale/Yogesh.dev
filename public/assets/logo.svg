@@ -1,0 +1,56 @@
+<svg width="800" height="250" viewBox="0 0 800 250" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="neonGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#bd00ff;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#00eaff;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#00ff66;stop-opacity:1" />
+    </linearGradient>
+    
+    <linearGradient id="globeGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#00eaff;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#bd00ff;stop-opacity:1" />
+    </linearGradient>
+
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+
+
+  <circle cx="50" cy="50" r="2" fill="#00eaff" opacity="0.6"/>
+  <rect x="750" y="40" width="3" height="3" fill="#00ff66" opacity="0.5"/>
+  <circle cx="680" cy="200" r="1.5" fill="#bd00ff" opacity="0.7"/>
+  <path d="M40 100 L80 100" stroke="#00eaff" stroke-width="1" opacity="0.2" />
+
+  <g transform="translate(60, 62) scale(0.8)">
+     <path d="M10,10 L40,60 L40,110" stroke="url(#neonGradient)" stroke-width="8" fill="none" stroke-linecap="round" filter="url(#glow)"/>
+     <path d="M70,10 L40,60" stroke="url(#neonGradient)" stroke-width="8" fill="none" stroke-linecap="round" filter="url(#glow)"/>
+     <path d="M40,0 L40,30" stroke="#00eaff" stroke-width="4" stroke-linecap="round" filter="url(#glow)"/>
+     <circle cx="40" cy="20" r="12" stroke="#00eaff" stroke-width="3" fill="none" stroke-dasharray="20, 60" transform="rotate(-90 40 20)" filter="url(#glow)"/>
+  </g>
+
+  <g transform="translate(150, 122)">
+    <circle r="28" stroke="url(#globeGradient)" stroke-width="3" fill="none" filter="url(#glow)"/>
+    <ellipse cx="0" cy="0" rx="28" ry="10" stroke="url(#globeGradient)" stroke-width="1.5" fill="none" transform="rotate(20)" opacity="0.8"/>
+    <ellipse cx="0" cy="0" rx="10" ry="28" stroke="url(#globeGradient)" stroke-width="1.5" fill="none" transform="rotate(-20)" opacity="0.8"/>
+    <circle r="8" fill="url(#globeGradient)" opacity="0.4"/>
+  </g>
+
+  <text x="185" y="150" font-family="'Segoe UI', Arial, sans-serif" font-weight="800" font-size="90" fill="url(#neonGradient)" filter="url(#glow)" letter-spacing="-1">
+    gesh
+    <tspan fill="#00ff66">.dev</tspan>
+  </text>
+
+  <text x="190" y="195" font-family="'Courier New', monospace" font-size="20" fill="#ccc" letter-spacing="3">
+    Full Stack Developer
+  </text>
+  
+  <path d="M150 140 L170 140" stroke="#bd00ff" stroke-width="2" fill="none" opacity="0.5"/>
+  <path d="M630 150 L700 150 L720 170" stroke="#00ff66" stroke-width="2" fill="none" opacity="0.5"/>
+
+</svg>
