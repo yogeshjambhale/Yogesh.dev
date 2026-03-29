@@ -1,84 +1,146 @@
 <div class="resume-wrapper">
     <div class="resume-actions">
-        <button class="btn primary" (click)="downloadResume()">Download / Print Resume</button>
+        <button class="btn primary" (click)="downloadResume()">
+            <i class="fas fa-file-download"></i>
+            Download / Print Resume
+        </button>
     </div>
 
     <div class="resume-page" id="resume-content">
         <header class="resume-header">
-            <h1>YOGESH JAMBHALE</h1>
-            <h2>Web Developer</h2>
+            <h1>Yogesh Jambhale</h1>
             <div class="contact-info">
-                <span>📞 7057694596</span>
-                <span>✉️ yogeshjambhale1920@gmail.com</span>
-                <span>📍 Dombivli, India</span>
+                <span><i class="fas fa-envelope" style="font-size: 0.8rem; margin-right:4px;"></i>
+                    yogeshjambhale1920@gmail.com</span>
+                <span><i class="fas fa-mobile-alt" style="font-size: 0.8rem; margin-right:4px;"></i> 7057694596</span>
+                <span><i class="fab fa-linkedin" style="font-size: 0.8rem; margin-right:4px;"></i> <a
+                        href="https://linkedin.com/in/yogesh-jambhale-005b8a241"
+                        target="_blank">in/yogesh-jambhale-005b8a241</a></span>
+                <span><i class="fas fa-cloud" style="font-size: 0.8rem; margin-right:4px;"></i> <a
+                        href="https://yogeshjambhale.netlify.app/home"
+                        target="_blank">yogeshjambhale.netlify.app/home</a></span>
             </div>
         </header>
 
-        <div class="resume-content-grid">
-            <section class="resume-section full-width">
-                <h3>EDUCATION</h3>
-                <div class="resume-item">
-                    <div class="item-header">
-                        <span class="institution">Dnyankunj College of IT and Management</span>
-                        <span class="date">2020 - 2023</span>
-                    </div>
-                    <p class="degree">Bachelor of Computer Application (BCA)</p>
-                </div>
-                <div class="resume-item">
-                    <div class="item-header">
-                        <span class="institution">IT Vedant</span>
-                        <span class="date">Sept 2025 - March 2026</span>
-                    </div>
-                    <p class="degree">Data Science and Data Analysis With AI</p>
-                </div>
-            </section>
+        <section class="resume-section">
+            <h3 class="section-title">SUMMARY</h3>
+            <p>Machine Learning enthusiast with hands-on experience building predictive models using Python, TensorFlow,
+                and Scikit-learn. Skilled in data preprocessing, model training, and evaluation with practical projects
+                in machine learning and deep learning. Passionate about solving real-world problems using data-driven
+                approaches.</p>
+        </section>
 
-            <section class="resume-section full-width">
-                <h3>PROJECTS</h3>
-                <div class="resume-item">
-                    <div class="item-header">
-                        <h4>Ecommerce Website</h4>
-                    </div>
-                    <p>Built using Angular and Django. Implemented product listing, cart functionality, and user
-                        authentication.</p>
+        <section class="resume-section">
+            <h3 class="section-title">EXPERIENCE</h3>
+            <div class="resume-item">
+                <div class="item-header">
+                    <span class="job-title">Data Science and Machine Learning intern</span>
+                    <span class="date">March 2026 - Present</span>
                 </div>
-                <div class="resume-item">
-                    <div class="item-header">
-                        <h4>News App</h4>
-                    </div>
-                    <p>Developed a news aggregation application using Angular and Django with real-time updates.</p>
+                <div class="item-subheader">
+                    <span class="company">Ybi Foundation</span>
                 </div>
-                <div class="resume-item">
-                    <div class="item-header">
-                        <h4>Invoice Generation Website</h4>
-                    </div>
-                    <p>Created a web application for generating and managing invoices using Angular and Django.</p>
-                </div>
-            </section>
+                <ul class="duties-list">
+                    <li>Built and optimized <strong>machine learning models</strong> using Python (Pandas, NumPy,
+                        Scikit-learn), improving prediction accuracy by <strong>18–25%</strong> on structured datasets.
+                    </li>
+                    <li>Performed <strong>exploratory data analysis (EDA)</strong> on datasets of <strong>50K+
+                            records</strong>, identifying key trends and improving data quality by <strong>30%</strong>
+                        through cleaning and preprocessing.</li>
+                </ul>
+            </div>
+        </section>
 
-            <section class="resume-section">
-                <h3>SKILLS</h3>
-                <div class="skills-grid">
-                    <span class="skill-tag">Angular</span>
-                    <span class="skill-tag">Django</span>
-                    <span class="skill-tag">Python</span>
-                    <span class="skill-tag">HTML/CSS</span>
-                    <span class="skill-tag">JavaScript</span>
-                    <span class="skill-tag">TypeScript</span>
-                    <span class="skill-tag">MySQL</span>
-                    <span class="skill-tag">Data Analysis</span>
+        <section class="resume-section">
+            <h3 class="section-title">PROJECT</h3>
+
+            <div class="resume-item">
+                <div class="item-header">
+                    <span class="job-title">Intelligent Resume Scanner</span>
                 </div>
-            </section>
+                <div class="item-subheader">
+                    <span class="company">IT Vedant • <a href="https://resumescaner.streamlit.app/"
+                            target="_blank">resumescaner.streamlit.app/</a></span>
+                </div>
+                <ul class="duties-list">
+                    <li>Built an <strong>AI-powered resume screening tool</strong> that evaluates resume–job description
+                        compatibility, improving candidate-job matching efficiency by <strong>automating 90% of manual
+                            resume screening tasks.</strong></li>
+                    <li>Parsed and processed <strong>PDF resumes using PyMuPDF</strong>, extracting structured text from
+                        <strong>100+ resumes</strong> for automated analysis.
+                    </li>
+                    <li>Implemented <strong>CountVectorizer-based text representation</strong> and <strong>Cosine
+                            Similarity</strong>, achieving <strong>85%+ accuracy in skill matching between resumes and
+                            job descriptions.</strong></li>
+                    <li>Designed a <strong>Streamlit-based interactive dashboard</strong> that provides <strong>matching
+                            scores and missing skill insights</strong>, enabling users to optimize resumes for ATS
+                        systems.</li>
+                </ul>
+            </div>
 
-            <section class="resume-section">
-                <h3>KNOWN LANGUAGES</h3>
-                <p>Marathi, Hindi, English</p>
-            </section>
+            <div class="resume-item">
+                <div class="item-header">
+                    <span class="job-title">Fashion Image Similarity Search Engine</span>
+                </div>
+                <div class="item-subheader">
+                    <span class="company">IT Vedant</span>
+                </div>
+                <ul class="duties-list">
+                    <li>Developed a <strong>deep learning-based visual search engine</strong> capable of retrieving
+                        visually similar fashion items from a dataset of <strong>44,000+ product images</strong>.</li>
+                    <li>Leveraged <strong>Transfer Learning</strong> using pre-trained ResNet50 with <strong>Global Max
+                            Pooling</strong> to generate <strong>2048-dimensional feature embeddings</strong> for
+                        efficient image representation.</li>
+                    <li>Implemented <strong>Cosine Similarity-based ranking</strong> to retrieve the <strong>Top-5 most
+                            visually similar products</strong>, improving product discovery and recommendation accuracy.
+                    </li>
+                </ul>
+            </div>
 
-            <section class="resume-section full-width">
-                <h3>HOBBIES</h3>
-                <p>Playing Cricket, Sketching, Swimming</p>
-            </section>
-        </div>
+            <div class="resume-item">
+                <div class="item-header">
+                    <span class="job-title">E-Commerce Vendor Reliability Prediction Model</span>
+                </div>
+                <div class="item-subheader">
+                    <span class="company">IT Vedant</span>
+                </div>
+                <ul class="duties-list">
+                    <li>Built an <strong>end-to-end ML pipeline</strong> to predict vendor reliability for an e-commerce
+                        platform using <strong>transaction and delivery data from multiple relational tables</strong>.
+                    </li>
+                    <li>Engineered key seller performance features including <strong>Cancellation Rate, Average Shipping
+                            Delay, and Dispute Frequency</strong> to improve risk prediction accuracy.</li>
+                    <li>Implemented and compared multiple classification models including <strong>Random Forest and
+                            XGBoost</strong>, achieving <strong>~90% accuracy in identifying high-risk vendors</strong>.
+                    </li>
+                    <li>Automated <strong>data extraction and transformation using MySQL and SQLAlchemy</strong>,
+                        enabling scalable vendor risk monitoring.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="resume-section">
+            <h3 class="section-title">EDUCATION</h3>
+            <div class="resume-item education-item">
+                <div class="job-title">Data Science & Analytics with Artificial Intelligence</div>
+                <div class="company text-uppercase">IT VEDANT • THANE • 2026</div>
+            </div>
+            <div class="resume-item education-item">
+                <div class="job-title">Bachelor of Computer Applications</div>
+                <div class="company text-uppercase">Dnyankunj College of IT and Management • Oros • 2023</div>
+            </div>
+        </section>
+
+        <section class="resume-section">
+            <h3 class="section-title">SKILLS</h3>
+            <div class="skills-text">
+                <p><strong>Databases & Programming Languages:</strong> Python, SQL, MySQL.</p>
+                <p><strong>Data Science & Machine Learning:</strong> Pandas, NumPy, Scikit-learn, TensorFlow, Machine
+                    Learning, Deep Learning, Feature Engineering, Model Evaluation.</p>
+                <p><strong>Data Analysis & Visualization:</strong> Power BI, Tableau, Matplotlib, Seaborn, Exploratory
+                    Data Analysis (EDA), Data Visualization</p>
+                <p><strong>Tools & Technologies:</strong> Jupyter Notebook, Git, GitHub.</p>
+            </div>
+        </section>
     </div>
 </div>

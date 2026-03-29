@@ -1,4 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css");
+
 :root {
   /* Modern Deep Navy Theme */
   --primary-color: #6366f1;
@@ -153,5 +155,17 @@ body {
 
   .nav-links li {
     margin: 1rem 0;
+  }
+}
+
+@media print {
+  .bubbles-container {
+    display: none !important;
+  }
+
+  .container {
+    padding: 0 !important;
+    margin: 0 !important;
+    max-width: none !important;
   }
 }

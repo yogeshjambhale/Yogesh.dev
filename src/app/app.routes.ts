@@ -1,21 +1,43 @@
 import { Routes } from '@angular/router';
-import { HomeComponent } from './home/home.component';
-import { ProjectsComponent } from './projects/projects.component';
-import { SkillsComponent } from './skills/skills.component';
-import { CertificatesComponent } from './certificates/certificates.component';
-import { ResumeComponent } from './resume/resume.component';
-import { AboutMeComponent } from './about-me/about-me.component';
-import { ContactUsComponent } from './contact-us/contact-us.component';
+
 
 export const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
-  { path: 'home', component: HomeComponent, title: 'Home | Yogesh Jambhale' },
-  { path: 'projects', component: ProjectsComponent, title: 'Projects | Yogesh Jambhale' },
-  { path: 'skills', component: SkillsComponent, title: 'Skills | Yogesh Jambhale' },
-  { path: 'certificates', component: CertificatesComponent, title: 'Certificates | Yogesh Jambhale' },
-  { path: 'resume', component: ResumeComponent, title: 'Resume | Yogesh Jambhale' },
-  { path: 'about-me', component: AboutMeComponent, title: 'About Me | Yogesh Jambhale' },
-  { path: 'contact-us', component: ContactUsComponent, title: 'Contact Us | Yogesh Jambhale' },
+  {
+    path: 'home',
+    loadComponent: () => import('./home/home.component').then(m => m.HomeComponent),
+    title: 'Home | Yogesh Jambhale - Portfolio'
+  },
+  {
+    path: 'projects',
+    loadComponent: () => import('./projects/projects.component').then(m => m.ProjectsComponent),
+    title: 'Projects | Yogesh Jambhale - Full Stack Developer'
+  },
+  {
+    path: 'skills',
+    loadComponent: () => import('./skills/skills.component').then(m => m.SkillsComponent),
+    title: 'Skills | Yogesh Jambhale'
+  },
+  {
+    path: 'certificates',
+    loadComponent: () => import('./certificates/certificates.component').then(m => m.CertificatesComponent),
+    title: 'Certificates | Yogesh Jambhale'
+  },
+  {
+    path: 'resume',
+    loadComponent: () => import('./resume/resume.component').then(m => m.ResumeComponent),
+    title: 'Resume | Yogesh Jambhale'
+  },
+  {
+    path: 'about-me',
+    loadComponent: () => import('./about-me/about-me.component').then(m => m.AboutMeComponent),
+    title: 'About Me | Yogesh Jambhale'
+  },
+  {
+    path: 'contact-us',
+    loadComponent: () => import('./contact-us/contact-us.component').then(m => m.ContactUsComponent),
+    title: 'Contact Us | Yogesh Jambhale'
+  },
   { path: '**', redirectTo: '/home' }
 ];
 

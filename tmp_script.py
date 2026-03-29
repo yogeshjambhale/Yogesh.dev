@@ -1,5 +1,9 @@
-import { Component, inject, signal, ChangeDetectorRef } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import re
+
+with open("src/app/projects/projects.component.ts", "r") as f:
+    content = f.read()
+
+new_content = """import { Component } from '@angular/core';
 
 interface ProjectOverview {
     objective: string;
@@ -15,10 +19,6 @@ interface Project {
     image: string;
     technologies: string[];
     link?: string;
-    github?: string;
-    modelCode?: string;
-    notebookPath?: string;
-    notebookCells?: string[];
     overview?: ProjectOverview;
 }
 
@@ -29,51 +29,16 @@ interface Project {
     styleUrl: './projects.component.css'
 })
 export class ProjectsComponent {
-    private http = inject(HttpClient);
-    private cdr = inject(ChangeDetectorRef);
-
-    selectedProject = signal<Project | null>(null);
-    activeTab = signal<string>('overview');
+    selectedProject: Project | null = null;
 
     openOverview(project: Project) {
-        this.selectedProject.set(project);
-        this.activeTab.set('overview');
+        this.selectedProject = project;
         document.body.style.overflow = 'hidden';
     }
 
     closeOverview() {
-        this.selectedProject.set(null);
+        this.selectedProject = null;
         document.body.style.overflow = '';
-    }
-
-    setTab(tab: string) {
-        this.activeTab.set(tab);
-        const project = this.selectedProject();
-        if (tab === 'code' && project?.notebookPath) {
-            this.loadNotebook(project);
-        }
-    }
-
-    loadNotebook(project: Project) {
-        if (project.notebookCells) return;
-
-        this.http.get(`/assets/notebooks/${project.notebookPath}`).subscribe({
-            next: (data: any) => {
-                if (data && data.cells) {
-                    project.notebookCells = data.cells
-                        .filter((cell: any) => cell.cell_type === 'code')
-                        .map((cell: any) => Array.isArray(cell.source) ? cell.source.join('') : cell.source);
-                } else {
-                    project.notebookCells = ['// Associated notebook could not be parsed: format mismatch.'];
-                }
-                this.cdr.detectChanges();
-            },
-            error: (err) => {
-                console.error('Error loading notebook:', err);
-                project.notebookCells = ['// Content could not be loaded from the associated notebook.'];
-                this.cdr.detectChanges();
-            }
-        });
     }
 
     projects: Project[] = [
@@ -81,12 +46,9 @@ export class ProjectsComponent {
             id: 1,
             title: 'Intelligent Resume Scanner & ATS Optimizer',
             description: 'AI-driven NLP tool for automated candidate screening and skill-gap analysis using PyMuPDF and Scikit-learn. Achieved 85%+ accuracy in skill matching.',
-            image: 'assets/projects/resume_scanner.png',
+            image: 'assets/bg1.png',
             technologies: ['Python', 'NLP', 'NLTK', 'Scikit-learn', 'Streamlit', 'PyMuPDF'],
             link: 'https://resumescaner.streamlit.app/',
-            github: 'https://github.com/yogeshjambhale/resume_scaner.git',
-            modelCode: `import fitz # PyMuPDF\nfrom sklearn.feature_extraction.text import CountVectorizer\nfrom sklearn.metrics.pairwise import cosine_similarity\n\ndef match_resume(resume_text, job_description):\n    text = [resume_text, job_description]\n    cv = CountVectorizer()\n    count_matrix = cv.fit_transform(text)\n    # Compute Cosine Similarity between Resume and JD\n    similarity_score = cosine_similarity(count_matrix)[0][1]\n    return round(similarity_score * 100, 2)`,
-            notebookPath: 'resume_scanner.ipynb',
             overview: {
                 objective: 'To streamline the recruitment process by automating the initial screening of resumes against specific job descriptions (JD) using Natural Language Processing.',
                 methodology: [
@@ -106,12 +68,9 @@ export class ProjectsComponent {
             id: 2,
             title: 'Fashion Image Similarity Search Engine',
             description: 'Deep learning-based visual search system for fashion product discovery using ResNet50 Transfer Learning and Cosine Similarity to find visually similar items.',
-            image: 'assets/projects/fashion_search.png',
+            image: 'assets/bg2.png',
             technologies: ['Python', 'Deep Learning', 'TensorFlow', 'Keras', 'ResNet50', 'Computer Vision'],
             link: '#',
-            github: 'https://github.com/yogeshjambhale/image_search.git',
-            modelCode: `from tensorflow.keras.applications.resnet50 import ResNet50, preprocess_input\nfrom tensorflow.keras.preprocessing import image\nimport numpy as np\nfrom sklearn.metrics.pairwise import cosine_similarity\n\n# Using ResNet50 as a feature extractor\nmodel = ResNet50(weights='imagenet', include_top=False, input_shape=(224, 224, 3))\n\ndef extract_features(img_path):\n    img = image.load_img(img_path, target_size=(224, 224))\n    x = image.img_to_array(img)\n    x = np.expand_dims(x, axis=0)\n    x = preprocess_input(x)\n    features = model.predict(x)\n    return features.flatten()`,
-            notebookPath: 'fashion_search.ipynb',
             overview: {
                 objective: 'To enable users to find visually similar fashion items within a large dataset (10,000+ images) using computer vision.',
                 methodology: [
@@ -130,12 +89,9 @@ export class ProjectsComponent {
             id: 3,
             title: 'Multi-Class Emotion Detection (NLP)',
             description: 'Textual sentiment analysis system for classifying human emotions into Sadness, Anger, Love, Joy, Surprise, and Fear using Logistic Regression & TF-IDF.',
-            image: 'assets/projects/emotion_detection.png',
+            image: 'assets/bg3.png',
             technologies: ['Python', 'Scikit-learn', 'NLP', 'TF-IDF', 'NLTK', 'Logistic Regression', 'Streamlit'],
-            link: 'https://analyzesentiment.streamlit.app/',
-            github: 'https://github.com/yogeshjambhale/sentiment_analysis.git',
-            modelCode: `from sklearn.linear_model import LogisticRegression\nfrom sklearn.feature_extraction.text import TfidfVectorizer\n\n# Model Training (Snapshot)\ntfidf = TfidfVectorizer(max_features=5000)\nX_train_tfidf = tfidf.fit_transform(X_train)\n\nmodel = LogisticRegression(multi_class='multinomial', solver='lbfgs')\nmodel.fit(X_train_tfidf, y_train)\n\ndef predict_emotion(text):\n    vector = tfidf.transform([text])\n    return model.predict(vector)[0]`,
-            notebookPath: 'emotion_detection.ipynb',
+            link: '#',
             overview: {
                 objective: 'To classify text samples into six distinct emotional categories: Sadness, Anger, Love, Joy, Surprise, and Fear.',
                 methodology: [
@@ -154,12 +110,9 @@ export class ProjectsComponent {
             id: 4,
             title: 'E-Commerce Vendor Reliability Prediction Model',
             description: 'End-to-end machine learning pipeline predicting vendor reliability and identifying "At-Risk" sellers using XGBoost and Random Forest on transaction data.',
-            image: 'assets/projects/vendor_reliability.png',
+            image: 'assets/bg4.png',
             technologies: ['Python', 'MySQL', 'SQLAlchemy', 'Machine Learning', 'XGBoost', 'Random Forest', 'Pandas'],
             link: '#',
-            github: 'https://github.com/yogeshjambhale/vendor-reliability.git',
-            modelCode: `import xgboost as xgb\n\n# XGBoost DMatrix creation for high efficiency\ndtrain = xgb.DMatrix(X_train, label=y_train)\n\nparams = {\n    'max_depth': 6,\n    'eta': 0.1,\n    'objective': 'multi:softmax',\n    'num_class': 3\n}\n\nmodel = xgb.train(params, dtrain, num_boost_round=100)\n\ndef identify_risk(vendor_data):\n    dtest = xgb.DMatrix(vendor_data)\n    prediction = model.predict(dtest)\n    return 'Reliable' if prediction == 0 else 'At-Risk' if prediction == 1 else 'Unreliable'`,
-            notebookPath: 'vendor_reliability.ipynb',
             overview: {
                 objective: 'To predict vendor reliability and identify "At-Risk" or "Unreliable" sellers based on delivery performance and historical transaction data.',
                 methodology: [
@@ -178,12 +131,9 @@ export class ProjectsComponent {
             id: 5,
             title: 'Predictive Real Estate Valuation',
             description: 'Regression model for precision rental price estimation handling property-specific parameters with XGBoost Regression and logarithmic target transformations.',
-            image: 'assets/projects/real_estate_valuation.png',
+            image: 'assets/bg5.png',
             technologies: ['Python', 'XGBoost', 'Scikit-learn', 'NumPy'],
             link: 'https://renthousing.streamlit.app/',
-            github: 'https://github.com/yogeshjambhale/house_rent_predictor.git',
-            modelCode: `import numpy as np\nimport xgboost as xgb\n\ndef estimate_price(features):\n    # Re-scale prediction as model was trained on log-transformed target\n    log_prediction = xg_reg.predict(features)\n    final_price = np.expm1(log_prediction)\n    return final_price\n\n# Model was trained with 'reg:squarederror'\nxg_reg = xgb.XGBRegressor(objective ='reg:squarederror', colsample_bytree = 0.3, learning_rate = 0.1)`,
-            notebookPath: 'real_estate.ipynb',
             overview: {
                 objective: 'To estimate house rental prices with high accuracy based on property features like size, city, and furnishing status.',
                 methodology: [
@@ -201,12 +151,9 @@ export class ProjectsComponent {
             id: 6,
             title: 'Clinical Health Indicator (Heart Stroke Prediction)',
             description: 'Machine learning application predicting the probability of heart stroke using patient health metrics evaluated across Logistic Regression and SVM models.',
-            image: 'assets/projects/stroke_prediction.png',
+            image: 'assets/bg1.png',
             technologies: ['Python', 'Scikit-learn', 'Logistic Regression', 'SVM', 'Decision Tree', 'StandardScaler'],
             link: 'https://heartdiseasespredictor.streamlit.app/',
-            github: 'https://github.com/yogeshjambhale/heart_diseases_predictor.git',
-            modelCode: `from sklearn.svm import SVC\nfrom sklearn.preprocessing import StandardScaler\n\nscaler = StandardScaler()\nX_train_scaled = scaler.fit_transform(X_train)\n\n# SVM with RBF Kernel for non-linear decision boundaries\nmodel = SVC(kernel='rbf', probability=True)\nmodel.fit(X_train_scaled, y_train)\n\ndef predict_stroke(patient_metrics):\n    metrics_scaled = scaler.transform([patient_metrics])\n    prob = model.predict_proba(metrics_scaled)\n    return prob[0][1] # Probability of Class 1 (Stroke)`,
-            notebookPath: 'stroke_prediction.ipynb',
             overview: {
                 objective: 'To predict the probability of heart stroke using patient health metrics such as age, BMI, and glucose levels.',
                 methodology: [
@@ -222,12 +169,9 @@ export class ProjectsComponent {
             id: 7,
             title: 'Movie Recommendation System',
             description: 'Content-based filtering system providing personalized movie suggestions by analyzing the relationship between user ratings and film attributes.',
-            image: 'assets/projects/movie_recommendation.png',
+            image: 'assets/bg2.png',
             technologies: ['Python', 'Pandas', 'Scikit-learn'],
             link: '#',
-            github: 'https://github.com/yogeshjambhale/movie-recommender.git',
-            modelCode: `import pandas as pd\nfrom sklearn.metrics.pairwise import cosine_similarity\nfrom sklearn.feature_extraction.text import CountVectorizer\n\ndef get_recommendations(movie_id, similarity_matrix):\n    # Get index of movie\n    idx = movies[movies['id'] == movie_id].index[0]\n    # Get pairwise similarity scores\n    sim_scores = list(enumerate(similarity_matrix[idx]))\n    # Sort movies based on similarity\n    sim_scores = sorted(sim_scores, key=lambda x: x[1], reverse=True)\n    return sim_scores[1:6]`,
-            notebookPath: 'movie_recommendation.ipynb',
             overview: {
                 objective: 'To provide personalized movie suggestions by analyzing the relationship between user ratings and film attributes.',
                 methodology: [
@@ -241,42 +185,23 @@ export class ProjectsComponent {
         {
             id: 8,
             title: 'Kokan Community App',
-            description: 'A community app for Kokan region focusing on local businesses and cultural preservation.',
-            image: 'assets/projects/kokan_app.png',
+            description: 'A community app for Kokan.',
+            image: 'assets/bg4.png',
             technologies: ['Angular', 'django', 'nosql', 'nodejs', 'typescript', 'python'],
-            link: 'https://aplakokan.cloud',
-            github: 'https://github.com/yogesh/kokan-app',
-            modelCode: `// Angular Component logic (Snapshot)\n@Component({ ... })\nexport class CommunityFeedComponent implements OnInit {\n  posts: Post[] = [];\n  ngOnInit() {\n    this.api.fetchCommunityPosts().subscribe(data => {\n      this.posts = data;\n    });\n  }\n}`,
-            notebookPath: 'kokan_app.ipynb',
-            overview: {
-                objective: 'To foster regional economic growth and cultural connection by providing a digital marketplace and forum for the Konkan community.',
-                methodology: [
-                    'Full Stack Architecture: Developed using Angular for a responsive SPA and Django for a robust RESTful API.',
-                    'Real-time Updates: Integrated Socket.io for immediate community alerts and marketplace notifications.',
-                    'Locational Services: Used Leaflet.js to map local Konkan businesses and historical sites.'
-                ],
-                results: 'Successfully deployed a localized digital ecosystem with positive initial uptake from regional vendors.'
-            }
+            link: 'https://aplakokan.cloud'
         },
         {
             id: 9,
             title: 'Invoice Generator Website',
-            description: 'A professional web utility for generating and managing invoices with PDF export and client tracking.',
-            image: 'assets/projects/invoice_generator.png',
+            description: 'A website for generating invoices.',
+            image: 'assets/bg5.png',
             technologies: ['Angular', 'typescript', 'bootstrap', 'html', 'css'],
-            link: 'https://zentrobill.netlify.app/',
-            github: 'https://github.com/yogesh/invoice-generator',
-            modelCode: `import jsPDF from 'jspdf';\n\ndef generatePDF(invoiceData) {\n  const doc = new jsPDF();\n  doc.text(\"Invoice Summary\", 10, 10);\n  doc.text(\`Client: \${invoiceData.client}\`, 10, 20);\n  doc.save(\"invoice.pdf\");\n}`,
-            notebookPath: 'invoice_generator.ipynb',
-            overview: {
-                objective: 'To provide small business owners with a streamlined tool for creating professional, legally compliant invoices quickly.',
-                methodology: [
-                    'Frontend Utility: Built with Angular 17+ to leverage reactive forms and signals for real-time invoice calculations.',
-                    'Export Engine: Integrated jspdf-autotable for precise PDF layout generation of invoice tables.',
-                    'Client Management: Implemented local storage-based persistence for recurring client details.'
-                ],
-                results: 'Delivered a zero-latency web application that facilitates rapid business administrative tasks.'
-            }
+            link: 'https://zentrobill.netlify.app/'
         }
     ];
 }
+"""
+
+with open("src/app/projects/projects.component.ts", "w") as f:
+    f.write(new_content)
+

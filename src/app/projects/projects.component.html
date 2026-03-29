@@ -14,11 +14,125 @@
                     <span class="tech-tag">{{ tech }}</span>
                     }
                 </div>
-                @if (project.link) {
-                <a [href]="project.link" target="_blank" class="project-link">View Project</a>
-                }
+                <div class="card-actions">
+                    @if (project.overview) {
+                    <button class="project-link overview-btn" style="width: 100%" (click)="openOverview(project)">Project Overview</button>
+                    }
+                </div>
             </div>
         </div>
         }
     </div>
 </div>
+
+@if (selectedProject()) {
+<div class="modal-overlay" (click)="closeOverview()">
+    <div class="modal-content" (click)="$event.stopPropagation()">
+        <button class="close-btn" (click)="closeOverview()">&times;</button>
+        <div class="modal-header">
+            <h3>{{ selectedProject()?.title }}</h3>
+            <div class="modal-tabs">
+                <button [class.active]="activeTab() === 'overview'" (click)="setTab('overview')">Overview</button>
+                <button [class.active]="activeTab() === 'code'" (click)="setTab('code')">Code</button>
+                <button [class.active]="activeTab() === 'demo'" (click)="setTab('demo')">Live Demo</button>
+                <button [class.active]="activeTab() === 'github'" (click)="setTab('github')">GitHub</button>
+            </div>
+        </div>
+
+        <div class="modal-body">
+            @if (activeTab() === 'overview') {
+                @if (selectedProject()?.overview?.objective) {
+                <div class="overview-section">
+                    <h4>Objective</h4>
+                    <p>{{ selectedProject()?.overview?.objective }}</p>
+                </div>
+                }
+
+                @if (selectedProject()?.overview?.methodology && selectedProject()!.overview!.methodology.length > 0) {
+                <div class="overview-section">
+                    <h4>Key Process & Methodology</h4>
+                    <ul>
+                        @for (method of selectedProject()?.overview?.methodology; track method) {
+                        <li>{{ method }}</li>
+                        }
+                    </ul>
+                </div>
+                }
+
+                @if (selectedProject()?.overview?.features && selectedProject()!.overview!.features!.length > 0) {
+                <div class="overview-section">
+                    <h4>Key Features</h4>
+                    <ul>
+                        @for (feature of selectedProject()?.overview?.features; track feature) {
+                        <li>{{ feature }}</li>
+                        }
+                    </ul>
+                </div>
+                }
+
+                @if (selectedProject()?.overview?.results) {
+                <div class="overview-section">
+                    <h4>Results</h4>
+                    <p>{{ selectedProject()?.overview?.results }}</p>
+                </div>
+                }
+            }
+
+            @if (activeTab() === 'code') {
+            <div class="overview-section">
+                @if (selectedProject()?.notebookPath) {
+                    <h4>Notebook Implementation</h4>
+                    @if (selectedProject()?.notebookCells) {
+                        <div class="notebook-container">
+                            @for (cell of selectedProject()?.notebookCells; track $index) {
+                            <div class="code-block notebook-cell">
+                                <div class="cell-header">In [{{ $index + 1 }}]:</div>
+                                <pre><code>{{ cell }}</code></pre>
+                            </div>
+                            }
+                        </div>
+                    } @else {
+                        <div class="loading-notebook">
+                            <i class="fas fa-spinner fa-spin"></i> Loading notebook contents...
+                        </div>
+                    }
+                } @else if (selectedProject()?.modelCode) {
+                    <h4>Model Implementation Snippet</h4>
+                    <div class="code-block">
+                        <pre><code>{{ selectedProject()?.modelCode }}</code></pre>
+                    </div>
+                } @else {
+                    <p class="no-link-msg">No code implementation available for this project.</p>
+                }
+            </div>
+            }
+
+            @if (activeTab() === 'demo') {
+            <div class="tab-cta-section">
+                <h4>Experience the Application</h4>
+                <p>Click the button below to view the live deployment of this project.</p>
+                @if (selectedProject()?.link && selectedProject()?.link !== '#') {
+                <a [href]="selectedProject()!.link" target="_blank" class="project-link cta-btn">Visit Live Site</a>
+                } @else {
+                <p class="no-link-msg">Live demo is currently unavailable for this project.</p>
+                }
+            </div>
+            }
+
+            @if (activeTab() === 'github') {
+            <div class="tab-cta-section">
+                <h4>Source Code Repository</h4>
+                <p>Explore the full codebase, documentation, and implementation details on GitHub.</p>
+                @if (selectedProject()?.github) {
+                <a [href]="selectedProject()!.github" target="_blank" class="project-link cta-btn github-btn">
+                    <i class="fab fa-github"></i> View Repository
+                </a>
+                } @else {
+                <p class="no-link-msg">GitHub repository is not publicly available for this project.</p>
+                }
+            </div>
+            }
+        </div>
+    </div>
+</div>
+}

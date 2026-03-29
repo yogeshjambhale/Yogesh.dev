@@ -80,6 +80,30 @@ h1 {
     box-shadow: 0 4px 8px rgba(98, 0, 234, 0.3);
 }
 
+.social-icons {
+    display: flex;
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.social-icons a {
+    color: var(--text-secondary);
+    transition: color 0.3s, transform 0.2s;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.social-icons a:hover {
+    color: var(--primary-color);
+    transform: translateY(-3px);
+}
+
+.social-icons svg {
+    width: 28px;
+    height: 28px;
+}
+
 .profile-photo {
     flex: 1;
     display: flex;

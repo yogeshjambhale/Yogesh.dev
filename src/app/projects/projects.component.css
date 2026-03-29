@@ -81,18 +81,274 @@ p {
     font-weight: 500;
 }
 
+
+.card-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
 .project-link {
     display: inline-block;
-    margin-top: 1.5rem;
     padding: 0.8rem 1.5rem;
     background-color: var(--primary-color);
     color: white;
     text-decoration: none;
     border-radius: 5px;
     font-weight: bold;
-    transition: background-color 0.3s;
+    font-family: inherit;
+    font-size: 1rem;
+    border: none;
+    transition: background-color 0.3s, color 0.3s;
+    text-align: center;
 }
 
 .project-link:hover {
     background-color: var(--secondary-color);
+}
+
+.overview-btn {
+    background-color: transparent;
+    border: 2px solid var(--primary-color);
+    color: var(--primary-color);
+    cursor: pointer;
+}
+
+.overview-btn:hover {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+/* Modal Styles */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(15, 23, 42, 0.85);
+    backdrop-filter: blur(8px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+}
+
+.modal-content {
+    background: var(--surface-color);
+    width: 90%;
+    max-width: 800px;
+    max-height: 90vh;
+    border-radius: 12px;
+    padding: 2.5rem;
+    position: relative;
+    overflow-y: auto;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+    animation: modalFadeIn 0.3s ease-out forwards;
+}
+
+@keyframes modalFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+        scale: 0.95;
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+        scale: 1;
+    }
+}
+
+.close-btn {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    background: none;
+    border: none;
+    font-size: 2.5rem;
+    color: var(--text-secondary);
+    cursor: pointer;
+    line-height: 1;
+    transition: color 0.2s;
+}
+
+.close-btn:hover {
+    color: var(--primary-color);
+}
+
+.modal-header h3 {
+    font-size: 2rem;
+    color: var(--primary-color);
+    margin: 0;
+    padding-right: 2.5rem;
+}
+
+.modal-tabs {
+    display: flex;
+    gap: 1.5rem;
+    margin-top: 2rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 0.5rem;
+}
+
+.modal-tabs button {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    padding: 0.5rem 0.5rem;
+    cursor: pointer;
+    font-size: 1.1rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    position: relative;
+    font-family: inherit;
+}
+
+.modal-tabs button.active {
+    color: var(--primary-color);
+}
+
+.modal-tabs button.active::after {
+    content: '';
+    position: absolute;
+    bottom: -0.6rem;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: var(--primary-color);
+    border-radius: 2px;
+}
+
+.modal-tabs button:hover:not(.active) {
+    color: var(--text-color);
+}
+
+.modal-body {
+    padding-top: 2rem;
+}
+
+.overview-section {
+    margin-bottom: 2rem;
+}
+
+.overview-section h4 {
+    color: var(--text-color);
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 0.5rem;
+}
+
+.overview-section p,
+.overview-section li {
+    color: var(--text-secondary);
+    line-height: 1.7;
+    font-size: 1.05rem;
+}
+
+.code-block {
+    background-color: #0f172a;
+    padding: 1.5rem;
+    border-radius: 8px;
+    overflow-x: auto;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    margin-top: 1rem;
+}
+
+.code-block pre {
+    margin: 0;
+    color: #e2e8f0;
+    font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+.tab-cta-section {
+    text-align: center;
+    padding: 4rem 2rem;
+    background: rgba(98, 0, 234, 0.03);
+    border-radius: 12px;
+    margin-top: 1rem;
+}
+
+.tab-cta-section h4 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    color: var(--text-color);
+}
+
+.tab-cta-section p {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+}
+
+.cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.8rem;
+    margin-top: 2rem;
+    padding: 1rem 3rem;
+    font-size: 1.2rem;
+    border-radius: 8px;
+}
+
+.github-btn {
+    background-color: #24292e;
+}
+
+.github-btn:hover {
+    background-color: #1b1f23;
+}
+
+.no-link-msg {
+    margin-top: 2rem;
+    font-style: italic;
+    color: var(--text-secondary);
+    background: rgba(255, 255, 255, 0.05);
+    padding: 1rem;
+    border-radius: 8px;
+}
+
+.notebook-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin-top: 1.5rem;
+}
+
+.notebook-cell {
+    position: relative;
+    padding-top: 2.8rem;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.cell-header {
+    position: absolute;
+    top: 0.8rem;
+    left: 1.2rem;
+    font-family: 'Consolas', monospace;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    letter-spacing: 0.5px;
+}
+
+.loading-notebook {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.2rem;
+    padding: 4rem 2rem;
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 12px;
+}
+
+.loading-notebook i {
+    color: var(--primary-color);
+    font-size: 1.5rem;
 }
