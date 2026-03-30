@@ -6,37 +6,37 @@ export const routes: Routes = [
   {
     path: 'home',
     loadComponent: () => import('./home/home.component').then(m => m.HomeComponent),
-    title: 'Home | Yogesh Jambhale - Portfolio'
+    title: 'Home | Yogesh Jambhale - AI Agent & Automation Expert'
   },
   {
     path: 'projects',
     loadComponent: () => import('./projects/projects.component').then(m => m.ProjectsComponent),
-    title: 'Projects | Yogesh Jambhale - Full Stack Developer'
+    title: 'AI & Web Projects | Yogesh Jambhale - Portfolio'
   },
   {
     path: 'skills',
     loadComponent: () => import('./skills/skills.component').then(m => m.SkillsComponent),
-    title: 'Skills | Yogesh Jambhale'
+    title: 'Core Skills | AI, Automation & Full Stack Development'
   },
   {
     path: 'certificates',
     loadComponent: () => import('./certificates/certificates.component').then(m => m.CertificatesComponent),
-    title: 'Certificates | Yogesh Jambhale'
+    title: 'Professional Certifications | Yogesh Jambhale'
   },
   {
     path: 'resume',
     loadComponent: () => import('./resume/resume.component').then(m => m.ResumeComponent),
-    title: 'Resume | Yogesh Jambhale'
+    title: 'Resume & Experience | Yogesh Jambhale - Hire Expert'
   },
   {
     path: 'about-me',
     loadComponent: () => import('./about-me/about-me.component').then(m => m.AboutMeComponent),
-    title: 'About Me | Yogesh Jambhale'
+    title: 'About Yogesh Jambhale | AI & Automation Specialist'
   },
   {
     path: 'contact-us',
     loadComponent: () => import('./contact-us/contact-us.component').then(m => m.ContactUsComponent),
-    title: 'Contact Us | Yogesh Jambhale'
+    title: 'Contact Yogesh Jambhale | Hire for AI & Web Solutions'
   },
   { path: '**', redirectTo: '/home' }
 ];

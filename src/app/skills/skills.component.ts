@@ -29,6 +29,24 @@ export class SkillsComponent {
             ]
         },
         {
+            name: 'AI Agents & LLMs',
+            skills: [
+                { name: 'LangChain', icon: 'devicon-python-plain' },
+                { name: 'OpenAI API', icon: 'devicon-python-plain' },
+                { name: 'Custom GPTs', icon: 'devicon-python-plain' },
+                { name: 'Autonomous Agents', icon: 'devicon-python-plain' }
+            ]
+        },
+        {
+            name: 'Workflow Automation',
+            skills: [
+                { name: 'Python Scripting', icon: 'devicon-python-plain' },
+                { name: 'n8n / Make.com', icon: 'devicon-python-plain' },
+                { name: 'Selenium / Playwright', icon: 'devicon-python-plain' },
+                { name: 'API Integration', icon: 'devicon-python-plain' }
+            ]
+        },
+        {
             name: 'Data Science & AI',
             skills: [
                 { name: 'Data Analysis', icon: 'devicon-pandas-plain' },
